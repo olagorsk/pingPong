@@ -3,3 +3,9 @@
 README.md
 *.dfm
 *.h
+img/
+*.~dfm
+*.~h
+*.exe
+*.obj
+*.tds
