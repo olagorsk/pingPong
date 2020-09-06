@@ -1,0 +1,5 @@
+*.bpr
+*.res
+README.md
+*.dfm
+*.h
