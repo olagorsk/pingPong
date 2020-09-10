@@ -8,7 +8,7 @@
 #pragma package(smart_init)
 #pragma resource "*.dfm"
 TForm1 *Form1;
-int x=-10, y=-10;
+int x=10, y=10;
 
 //---------------------------------------------------------------------------
 __fastcall TForm1::TForm1(TComponent* Owner)
@@ -69,16 +69,33 @@ void __fastcall TForm1::ball_timerTimer(TObject *Sender)
 ball->Left += x;
 ball->Top += y;
 
-if(ball->Top-5 <= table->Top) y=-y;
+if(ball->Top-5 <= table->Top) y=-y;   //bounce top
 
-if(ball->Top+ball->Height >= table->Height) y=-y;
+if(ball->Top+ball->Height >= table->Height) y=-y;    //bounce bottom
 
 
-if(     ball->Top-ball->Width/2 >= leftPaddle->Top  &&
+if      (ball->Top-ball->Width/2 >= leftPaddle->Top  &&
         ball->Top-ball->Width/2 <= leftPaddle->Top+leftPaddle->Height &&
         ball->Left <= leftPaddle->Left+leftPaddle->Width+2)
         {
         x=-x;
+        }    //left bounce
+       else if (ball->Left <= leftPaddle->Left+leftPaddle->Width-50)
+        {
+         ball_timer->Enabled = false;
+         ball->Visible = false;
+        }
+
+        if(ball->Top-ball->Width/2 >= rightPaddle->Top &&
+        ball->Top-ball->Width/2 <= rightPaddle->Top+rightPaddle->Height &&
+        ball->Left+ball->Width >= rightPaddle->Left-5)
+        {
+        x=-x;
+        }    //right bounce
+       else if (ball->Left+ball->Width >= rightPaddle->Left+50)
+        {
+         ball_timer->Enabled = false;
+         ball->Visible = false;
         }
 
 /*if(ball->Left <= leftPaddle->Left+leftPaddle->Width+15)
