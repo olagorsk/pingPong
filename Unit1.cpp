@@ -16,6 +16,7 @@ int bounces=0;
 void endGame(char who)
 {
 char * pointsMessage;
+AnsiString leftPointsText, rightPointsText, bouncesText;
  Form1->ball_timer->Enabled = false;
  Form1->ball->Visible = false;
          if (who =='r')
@@ -32,9 +33,19 @@ char * pointsMessage;
    Form1->PointsMessage->Visible=true;
    Form1->PointsMessage->Caption=pointsMessage;
 
+   leftPointsText = IntToStr(leftPoints);
+   rightPointsText= IntToStr(rightPoints);
+
+   Form1->Points->Visible=true;
+   Form1->Points->Caption=leftPointsText + " : " + rightPointsText;
+
+   bouncesText = IntToStr(bounces);
+   Form1->Bounces->Visible=true;
+   Form1->Bounces->Caption=" Liczba odbiæ wynosi " + bouncesText;
+
+   
+
 }
-
-
 //---------------------------------------------------------------------------
 __fastcall TForm1::TForm1(TComponent* Owner)
         : TForm(Owner)
@@ -123,8 +134,8 @@ if       (ball->Top-ball->Height/2 >= leftPaddle->Top-60  &&
         bounces++;
         }
         else if
-        (ball->Top-ball->Height/2 >= leftPaddle->Top-15  &&
-        ball->Top-ball->Height/2 <= leftPaddle->Top+leftPaddle->Height-15 &&
+        (ball->Top-ball->Height/2 >= leftPaddle->Top-20  &&
+        ball->Top-ball->Height/2 <= leftPaddle->Top+leftPaddle->Height-20 &&
         ball->Left <= leftPaddle->Left+leftPaddle->Width-10)
         {
         x=-x;
@@ -140,14 +151,14 @@ if       (ball->Top-ball->Height/2 >= rightPaddle->Top-60 &&
         ball->Left+ball->Width >= rightPaddle->Left+10)
         {
         x=-x*1.2;
-         bounces++;
+        bounces++;
         }
-        else if(ball->Top-ball->Height/2 >= rightPaddle->Top-15 &&
-        ball->Top-ball->Height/2 <= rightPaddle->Top+rightPaddle->Height-15 &&
+        else if(ball->Top-ball->Height/2 >= rightPaddle->Top-20 &&
+        ball->Top-ball->Height/2 <= rightPaddle->Top+rightPaddle->Height-20 &&
         ball->Left+ball->Width >= rightPaddle->Left+10)
         {
         x=-x;
-         bounces++;
+        bounces++;
         }    //right bounce
        else if (ball->Left+ball->Width >= rightPaddle->Left+10)
         {
