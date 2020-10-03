@@ -44,8 +44,23 @@ AnsiString leftPointsText, rightPointsText, bouncesText;
    Form1->Bounces->Caption=" Liczba odbiæ wynosi " + bouncesText;
 
    Form1->NextRound->Visible=true;
-   
+   Form1->NewGame->Visible=true;
 
+}
+
+void newRound()
+{
+ Form1->ball->Visible = true;
+   Form1-> PointsMessage->Visible=false;
+   Form1-> Points->Visible=false;
+   Form1-> Bounces->Visible=false;
+   Form1-> NextRound->Visible=false;
+   Form1->NewGame->Visible=false;
+   bounces=0;
+   x=10, y=10;
+   Form1->ball->Left=400;
+   Form1->ball->Top=180;
+      Form1->ball_timer->Enabled = true;
 }
 //---------------------------------------------------------------------------
 __fastcall TForm1::TForm1(TComponent* Owner)
@@ -172,16 +187,13 @@ if       (ball->Top-ball->Height/2 >= rightPaddle->Top-60 &&
 
 void __fastcall TForm1::NextRoundClick(TObject *Sender)
 {
-ball->Visible = true;
-ball->Left=400;
-   x=10, y=10;
-   PointsMessage->Visible=false;
-   Points->Visible=false;
-   Bounces->Visible=false;
-   NextRound->Visible=false;
-   bounces=0;
-     ball_timer->Enabled = true;
+newRound();
+}
 
+void __fastcall TForm1::NewGameClick(TObject *Sender)
+{
+        newRound();
+ leftPoints=0, rightPoints=0;
 }
 //---------------------------------------------------------------------------
 
