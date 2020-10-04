@@ -192,7 +192,7 @@ newRound();
 
 void __fastcall TForm1::NewGameClick(TObject *Sender)
 {
-   newRound();
+        newRound();
  leftPoints=0, rightPoints=0;
 }
 //---------------------------------------------------------------------------

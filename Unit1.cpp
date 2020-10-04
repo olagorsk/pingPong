@@ -63,6 +63,18 @@ void newRound()
       Form1->ball_timer->Enabled = true;
 }
 //---------------------------------------------------------------------------
+  void __fastcall TForm1::pingPongOlaClick(TObject *Sender)
+{
+AnsiString strMessage = "Your record has been registered";
+	AnsiString strCountry = "Country Name: Australia";
+	AnsiString strCity = "City to visit: Melbourne";
+	AnsiString strFinal = "Have a nice strip.";
+
+	ShowMessage(strMessage + sLineBreak + strCountry + sLineBreak +
+			strCity + sLineBreak + strFinal);
+}
+ //---------------------------------------------------------------------------
+
 __fastcall TForm1::TForm1(TComponent* Owner)
         : TForm(Owner)
 {
@@ -192,8 +204,17 @@ newRound();
 
 void __fastcall TForm1::NewGameClick(TObject *Sender)
 {
-        newRound();
- leftPoints=0, rightPoints=0;
+
+ if (Application->MessageBox("Czy na pewno chcesz zaczπÊ od nowa?", "Potwierdü",
+MB_YESNO | MB_ICONQUESTION)==IDYES)
+{
+newRound();
+leftPoints=0, rightPoints=0;
+}
 }
 //---------------------------------------------------------------------------
+
+
+//---------------------------------------------------------------------------
+
 
