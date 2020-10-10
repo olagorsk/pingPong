@@ -8,8 +8,8 @@
 #pragma package(smart_init)
 #pragma resource "*.dfm"
 TForm1 *Form1;
-int x=10, y=10;
-char who;
+int x=100, y=100;
+char who='n';
 int leftPoints=0, rightPoints=0;
 int bounces=0;
 
@@ -50,7 +50,7 @@ AnsiString leftPointsText, rightPointsText, bouncesText;
 
 void newRound()
 {
- Form1->ball->Visible = true;
+   Form1->ball->Visible = true;
    Form1-> PointsMessage->Visible=false;
    Form1-> Points->Visible=false;
    Form1-> Bounces->Visible=false;
@@ -60,24 +60,32 @@ void newRound()
    x=10, y=10;
    Form1->ball->Left=400;
    Form1->ball->Top=180;
-      Form1->ball_timer->Enabled = true;
+   Form1->ball_timer->Enabled = true;
+
 }
 //---------------------------------------------------------------------------
-  void __fastcall TForm1::pingPongOlaClick(TObject *Sender)
-{
-AnsiString strMessage = "Your record has been registered";
-	AnsiString strCountry = "Country Name: Australia";
-	AnsiString strCity = "City to visit: Melbourne";
-	AnsiString strFinal = "Have a nice strip.";
 
-	ShowMessage(strMessage + sLineBreak + strCountry + sLineBreak +
-			strCity + sLineBreak + strFinal);
-}
- //---------------------------------------------------------------------------
+
 
 __fastcall TForm1::TForm1(TComponent* Owner)
         : TForm(Owner)
 {
+
+	AnsiString welcome = "Witaj w grze PingPong";
+	AnsiString leftPaddle = "Lewy gracz steruje wciskaj¹c klawsze A oraz Z.";
+        AnsiString rightPaddle = "Prawy gracz steruje wciskaj¹c strza³ki do góry i w dó³.";
+	AnsiString enjoy = "ENJOY!!!";
+
+	ShowMessage(welcome + sLineBreak + sLineBreak+ leftPaddle + sLineBreak +
+			rightPaddle + sLineBreak + sLineBreak+ enjoy);
+
+        NextRound->Visible=false;
+        NewGame->Visible=true;
+        PointsMessage->Visible=false;
+        Bounces->Visible=false;
+        Points->Visible=false;
+        ball_timer->Enabled=false;
+        ball->Visible=false;
 }
 //---------------------------------------------------------------------------
 
@@ -166,8 +174,17 @@ if       (ball->Top-ball->Height/2 >= leftPaddle->Top-60  &&
         ball->Top-ball->Height/2 <= leftPaddle->Top+leftPaddle->Height-20 &&
         ball->Left <= leftPaddle->Left+leftPaddle->Width-10)
         {
+        if (bounces>4)
+        {
+         x=-x*1.5 ;
+        y=y*1.5;
+        bounces++;
+        }
+        else
+        {
         x=-x;
-         bounces++;
+        bounces++;
+        }
         }    //left bounce
        else if (ball->Left < leftPaddle->Left+leftPaddle->Width-10)
         {
@@ -185,9 +202,18 @@ if       (ball->Top-ball->Height/2 >= rightPaddle->Top-60 &&
         ball->Top-ball->Height/2 <= rightPaddle->Top+rightPaddle->Height-20 &&
         ball->Left+ball->Width >= rightPaddle->Left+10)
         {
+         if (bounces>4)
+        {
+        x=-x*1.5;
+        y=y*1.5;
+        bounces++;
+        }
+        else
+        {
         x=-x;
         bounces++;
-        }    //right bounce
+        }
+        }//right bounce
        else if (ball->Left+ball->Width >= rightPaddle->Left+10)
         {
          who='l';
@@ -204,7 +230,8 @@ newRound();
 
 void __fastcall TForm1::NewGameClick(TObject *Sender)
 {
-
+  if (bounces!=0)
+  {
  if (Application->MessageBox("Czy na pewno chcesz zacz¹æ od nowa?", "PotwierdŸ",
 MB_YESNO | MB_ICONQUESTION)==IDYES)
 {
@@ -212,9 +239,12 @@ newRound();
 leftPoints=0, rightPoints=0;
 }
 }
-//---------------------------------------------------------------------------
+else
+{
+newRound();
+Welcome->Visible=false;
+}
+}
 
-
-//---------------------------------------------------------------------------
 
 
