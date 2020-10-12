@@ -4,12 +4,12 @@
   <MACROS>
     <VERSION value="BCB.06.00"/>
     <PROJECT value="Project1.exe"/>
-    <OBJFILES value="Project1.obj Unit1.obj Unit2.obj"/>
+    <OBJFILES value="Project1.obj Unit1.obj"/>
     <RESFILES value="Project1.res"/>
     <DEFFILE value=""/>
-    <RESDEPEN value="$(RESFILES) Unit1.dfm Unit2.dfm"/>
+    <RESDEPEN value="$(RESFILES) Unit1.dfm"/>
     <LIBFILES value=""/>
-    <LIBRARIES value=""/>
+    <LIBRARIES value="rtl.lib vcl.lib"/>
     <SPARELIBS value="vcl.lib rtl.lib"/>
     <PACKAGES value="vcl.bpi rtl.bpi vclx.bpi bcbsmp.bpi dclocx.bpi"/>
     <PATHCPP value=".;"/>
@@ -20,7 +20,7 @@
     <RELEASELIBPATH value="$(BCB)\lib\release"/>
     <LINKER value="ilink32"/>
     <USERDEFINES value="_DEBUG"/>
-    <SYSDEFINES value="_RTLDLL;NO_STRICT;USEPACKAGES"/>
+    <SYSDEFINES value="NO_STRICT"/>
     <MAINSOURCE value="Project1.cpp"/>
     <INCLUDEPATH value="&quot;C:\Program Files (x86)\Borland\CBuilder6\Projects&quot;;D:\OLA\programowanie\KURS\20200811_pingPong\pingPong_ola\pingPong;$(BCB)\include;$(BCB)\include\vcl"/>
     <LIBPATH value="&quot;C:\Program Files (x86)\Borland\CBuilder6\Projects&quot;;D:\OLA\programowanie\KURS\20200811_pingPong\pingPong_ola\pingPong;$(BCB)\lib\obj;$(BCB)\lib"/>
@@ -37,16 +37,15 @@
     <OTHERFILES value=""/>
   </OPTIONS>
   <LINKER>
-    <ALLOBJ value="c0w32.obj $(PACKAGES) Memmgr.Lib sysinit.obj $(OBJFILES)"/>
+    <ALLOBJ value="c0w32.obj sysinit.obj $(OBJFILES)"/>
     <ALLRES value="$(RESFILES)"/>
-    <ALLLIB value="$(LIBFILES) $(LIBRARIES) import32.lib cp32mti.lib"/>
+    <ALLLIB value="$(LIBFILES) $(LIBRARIES) import32.lib cp32mt.lib"/>
     <OTHERFILES value=""/>
   </LINKER>
   <FILELIST>
       <FILE FILENAME="Project1.res" FORMNAME="" UNITNAME="Project1.res" CONTAINERID="ResTool" DESIGNCLASS="" LOCALCOMMAND=""/>
       <FILE FILENAME="Project1.cpp" FORMNAME="" UNITNAME="Project1" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
       <FILE FILENAME="Unit1.cpp" FORMNAME="Form1" UNITNAME="Unit1" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
-      <FILE FILENAME="Unit2.cpp" FORMNAME="Form2" UNITNAME="Unit2" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
   </FILELIST>
   <BUILDTOOLS>
   </BUILDTOOLS>
