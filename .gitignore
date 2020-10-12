@@ -6,6 +6,5 @@ README.md
 img/
 *.~dfm
 *.~h
-*.exe
 *.obj
 *.tds
