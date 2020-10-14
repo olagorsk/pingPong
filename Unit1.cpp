@@ -93,22 +93,22 @@ void __fastcall TForm1::FormKeyDown(TObject *Sender, WORD &Key,
     if (Key == VK_UP)
     {
     rightPaddleUp->Enabled = true;
-    rightPaddle->Picture->LoadFromFile("img/palette_right_up.bmp");
+    rightPaddle->Picture->Bitmap->Handle=LoadBitmap(HInstance, "PRU");
     }
     if (Key == VK_DOWN)
     {
-    rightPaddle->Picture->LoadFromFile("img/palette_right_down.bmp");
+    rightPaddle->Picture->Bitmap->Handle=LoadBitmap(HInstance, "PRD");
     rightPaddleDown->Enabled = true;
     }
 
    if (Key == 'A')
    {
    leftPaddleUp->Enabled = true;
-   leftPaddle->Picture->LoadFromFile("img/palette_left_up.bmp");
+   leftPaddle->Picture->Bitmap->Handle=LoadBitmap(HInstance, "PLU");
    }
    if (Key == 'Z')
    {
-   leftPaddle->Picture->LoadFromFile("img/palette_left_down.bmp");
+   leftPaddle->Picture->Bitmap->Handle=LoadBitmap(HInstance, "PLD");
    leftPaddleDown->Enabled = true;
    }
 }
